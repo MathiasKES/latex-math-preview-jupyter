@@ -1,25 +1,29 @@
 {
   "name": "latex-math-preview-jupyter",
-  "displayName": "latex-math-preview-jupyter",
+  "displayName": "Live LaTeX Math for Jupyter Notebooks",
   "description": "Live LaTeX math preview for Markdown cells in Jupyter notebooks",
   "version": "0.0.1",
+  "publisher": "MathiasKES",
+  "author": {
+    "name": "Mathias"
+  },
+  "categories": ["Visualization", "Notebooks", "Other"],
+  "icon": "icon.png",
+  "pricing": "Free",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MathiasKES/latex-math-preview-jupyter.git"
+  },
   "engines": {
     "vscode": "^1.100.0"
   },
-  "categories": [
-    "Other"
-  ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "latex-math-preview-jupyter.helloWorld",
-        "title": "Hello World"
-      },
-      {
-        "command": "latex-preview-jupyter.startPreview",
-        "title": "LaTeX Live Preview: Start Preview"
+        "command": "latex-math-preview-jupyter.startPreview",
+        "title": "Live LaTeX Math: Start Side Preview"
       }
     ]
   },
@@ -41,5 +45,11 @@
     "typescript": "^5.8.3",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.5.2"
-  }
+  },
+  "license": "SEE LICENSE IN REPOSITORY",
+  "bugs": {
+    "url": "https://github.com/MathiasKES/latex-math-preview-jupyter/issues",
+    "email": "brkqj4ruo@mozmail.com"
+  },
+  "homepage": "https://github.com/MathiasKES/latex-math-preview-jupyter/blob/main/README.md"
 }

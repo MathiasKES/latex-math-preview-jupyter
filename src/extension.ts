@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
     };
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('latex-preview-jupyter.startPreview', () => {
+        vscode.commands.registerCommand('latex-math-preview-jupyter.startPreview', () => {
             panel = vscode.window.createWebviewPanel(
                 'latexPreview',
                 'LaTeX Live Preview',
