@@ -2,7 +2,7 @@
   "name": "latex-math-preview-jupyter",
   "displayName": "Live LaTeX Math for Jupyter Notebooks",
   "description": "Live LaTeX math preview for Markdown cells in Jupyter notebooks",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "MathiasKES",
   "author": {
     "name": "Mathias"
