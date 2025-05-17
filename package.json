@@ -2,7 +2,7 @@
   "name": "latex-math-preview-jupyter",
   "displayName": "Live LaTeX Math for Jupyter Notebooks",
   "description": "Live LaTeX math preview for Markdown cells in Jupyter notebooks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "MathiasKES",
   "author": {
     "name": "Mathias"
@@ -27,6 +27,9 @@
       }
     ]
   },
+  "files": [
+    "media/**"
+  ],
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",

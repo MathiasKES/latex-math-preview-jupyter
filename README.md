@@ -27,7 +27,7 @@ A Visual Studio Code extension that provides **live rendering of LaTeX math expr
 
 ## 🐞 Known Issues
 
-- Doesn't work with align/equation environments.
+- Doesn't work with multiline align/equation environments.
 - Preview tabs from old sessions doesn't load. An easy fix to this is simply close and reopen the preview.
 - Preview doesn't line break properly.
 - Preview shows everything and not just LaTeX math.
@@ -35,6 +35,10 @@ A Visual Studio Code extension that provides **live rendering of LaTeX math expr
 ---
 
 ## 📦 Release Notes
+
+### 1.0.1
+
+- Included KaTeX files for offline use
 
 ### 1.0.0
 
