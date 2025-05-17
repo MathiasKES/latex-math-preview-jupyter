@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 function getWebviewContent(raw: string): string {
     // Escape HTML
-    const escaped = raw.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    // const escaped = raw.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
     return `
     <!DOCTYPE html>
@@ -58,7 +58,7 @@ function getWebviewContent(raw: string): string {
       <div id="output"></div>
       <script>
         (function() {
-          const raw = ${JSON.stringify(escaped)};
+          const raw = ${JSON.stringify(raw)};
           const output = document.getElementById('output');
           
           // Try block math first: $$...$$
