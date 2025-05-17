@@ -5,7 +5,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     const updateWebview = (rawText: string) => {
         if (panel) {
-            panel.webview.html = getWebviewContent(rawText);
+            panel.webview.html = getWebviewContent(rawText, panel.webview, context.extensionUri);
         }
     };
 
@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
                     enableScripts: true
                 }
             );
-            panel.webview.html = getWebviewContent('');
+            panel.webview.html = getWebviewContent('', panel.webview, context.extensionUri);
         })
     );
 
@@ -38,17 +38,16 @@ export function activate(context: vscode.ExtensionContext) {
     });
 }
 
-function getWebviewContent(raw: string): string {
-    // Escape HTML
-    // const escaped = raw.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+function getWebviewContent(raw: string, webview: vscode.Webview, extensionUri: vscode.Uri): string {
+    const katexJsUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'katex.min.js'));
+    const katexCssUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'katex.min.css'));
 
     return `
     <!DOCTYPE html>
     <html>
     <head>
       <meta charset="UTF-8">
-      <script src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" />
+      <link rel="stylesheet" href="${katexCssUri}">
       <style>
         body { font-family: sans-serif; padding: 1rem; }
         #output { font-size: 1.2rem; white-space: pre-wrap; }
@@ -56,12 +55,11 @@ function getWebviewContent(raw: string): string {
     </head>
     <body>
       <div id="output"></div>
+      <script src="${katexJsUri}"></script>
       <script>
         (function() {
           const raw = ${JSON.stringify(raw)};
           const output = document.getElementById('output');
-          
-          // Try block math first: $$...$$
           let match = raw.match(/\\$\\$([\\s\\S]+?)\\$\\$/);
           let display = false;
           let content = '';
@@ -70,7 +68,6 @@ function getWebviewContent(raw: string): string {
             display = true;
             content = match[1];
           } else {
-            // Try inline math: $...$
             match = raw.match(/\\$([^\\$]+?)\\$/);
             if (match) {
               display = false;
@@ -88,7 +85,6 @@ function getWebviewContent(raw: string): string {
               output.textContent = 'KaTeX render error';
             }
           } else {
-            // No valid delimiters found: show raw text
             output.textContent = raw;
           }
         })();
@@ -97,3 +93,4 @@ function getWebviewContent(raw: string): string {
     </html>
     `;
 }
+
